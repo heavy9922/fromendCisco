@@ -1,0 +1,136 @@
+      <ion-row>
+              
+      <ion-col>
+        <mat-form-field>
+          <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Busqueda">
+        </mat-form-field>
+      </ion-col>
+      
+      </ion-row>
+        <div class="container">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">codigoDelPrestamo</th>
+                <th scope="col">equipoPrestado</th>
+                <th scope="col">serial</th>
+                <th scope="col">canal</th>
+                <th scope="col">prestamo</th>
+                <th scope="col">mes</th>
+                <th scope="col">devolucionEstamada</th>
+                <th scope="col">realDevolucion</th>
+                <th scope="col">devuelto</th>
+                <th scope="col">estadoReal</th>
+                <th scope="col">diasTranscurridos</th>
+                <th scope="col">observaciones</th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let row of data">
+                <td>{{row.codigoDelPrestamo}}</td>
+                <td>{{row.equipoPrestado}}</td>
+                <td>{{row.serial}}</td>
+                <td>{{row.canal}}</td>
+                <td>{{row.prestamo}}</td>
+                <td>{{row.mes}}</td>
+                <td>{{row.devolucionEstamada}}</td>
+                <td>{{row.realDevolucion}}</td>
+                <td>{{row.devuelto}}</td>
+                <td>{{row.estadoReal}}</td>
+                <td>{{row.diasTranscurridos}}</td>
+                <td>{{row.observaciones}}</td>
+                <td><ion-icon (click)="edit()" name="pencil-outline"></ion-icon></td>
+                <td (click)="delete(row.id)"><ion-icon name="trash-outline"></ion-icon> </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource">
+
+          <!-- Position Column -->
+          <ng-container matColumnDef="codigoDelPrestamo">
+            <th mat-header-cell *matHeaderCellDef> CODIGO DEL PRESTAMO </th>
+            <td mat-cell *matCellDef="let element"> {{element.codigoDelPrestamo}} </td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="equipoPrestadoPid">
+            <th mat-header-cell *matHeaderCellDef> EQUIPO PRESTADO PID# </th>
+            <td mat-cell *matCellDef="let element"> {{element.equipoPrestadoPid}} </td>
+          </ng-container>
+
+          <!-- Weight Column -->
+          <ng-container matColumnDef="serial">
+            <th mat-header-cell *matHeaderCellDef> SERIAL </th>
+            <td mat-cell *matCellDef="let element"> {{element.serial}} </td>
+          </ng-container>
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="canal">
+            <th mat-header-cell *matHeaderCellDef> CANAL </th>
+            <td mat-cell *matCellDef="let element"> {{element.canal}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="fechaDelPrestamo">
+            <th mat-header-cell *matHeaderCellDef> FECHA DEL PRESTAMO </th>
+            <td mat-cell *matCellDef="let element"> {{element.fechaDelPrestamo}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="mes">
+            <th mat-header-cell *matHeaderCellDef> MES </th>
+            <td mat-cell *matCellDef="let element"> {{element.mes}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="devolucionEstimada">
+            <th mat-header-cell *matHeaderCellDef> DEVOLUCION ESTIMADA </th>
+            <td mat-cell *matCellDef="let element"> {{element.devolucionEstimada}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="devolucionReal">
+            <th mat-header-cell *matHeaderCellDef> DEVOLUCION REAL </th>
+            <td mat-cell *matCellDef="let element"> {{element.devolucionReal}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="devuelto">
+            <th mat-header-cell *matHeaderCellDef> DEVUELTO </th>
+            <td mat-cell *matCellDef="let element"> {{element.devuelto}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="estadoReal">
+            <th mat-header-cell *matHeaderCellDef> ESTADO REAL </th>
+            <td mat-cell *matCellDef="let element"> {{element.estadoReal}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="diasTranscurridos">
+            <th mat-header-cell *matHeaderCellDef> DIAS TRANSCURRIDOS </th>
+            <td mat-cell *matCellDef="let element"> {{element.diasTranscurridos}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="observaciones">
+            <th mat-header-cell *matHeaderCellDef> OBSERVACIONES </th>
+            <td mat-cell *matCellDef="let element"> {{element.observaciones}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="editar">
+            <th mat-header-cell *matHeaderCellDef> EDITAR </th>
+            <td mat-cell *matCellDef="let element"> 
+              <ion-icon (click)="formEditLend(element)" name="pencil-outline"></ion-icon> 
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="borrar">
+            <th mat-header-cell *matHeaderCellDef> BORRAR </th>
+            <td mat-cell *matCellDef="let element"> <ion-icon name="trash-outline"></ion-icon> </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+      </div>
+
